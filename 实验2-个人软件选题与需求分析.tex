@@ -1,0 +1,283 @@
+\documentclass[UTF8,12pt,a4paper]{ctexart}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric}
+
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\sloppy
+\setlist[itemize]{leftmargin=2em,itemsep=0.2em,topsep=0.3em}
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{实验2：个人软件选题与需求分析\\[0.5em]
+\large 个人项目：面向数模的特征衍生系统（FeaturePilot）}
+\author{班级：\underline{\hspace{3cm}}\quad
+学号：\underline{\hspace{3cm}}\quad
+姓名：\underline{\hspace{2.5cm}}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section*{学习通提交说明}
+\addcontentsline{toc}{section}{学习通提交说明}
+
+\begin{itemize}
+  \item \textbf{提交平台：} 只向学习通对应的“实验报告”作业上传一份PDF文件。
+  \item \textbf{文件命名：} 班级-学号-姓名-实验2-个人软件选题与需求分析.pdf。
+  \item \textbf{PDF内容：} 个人项目方案、需求说明V1、用户与场景证据、现有方案比较、用户故事与验收条件、AI能力分析及第2—17周个人计划。
+  \item \textbf{截止时间：} 以学习通作业设置为准；报告中的仓库链接与Commit用于过程核验。
+\end{itemize}
+
+\section{实验目的}
+
+\begin{itemize}
+  \item 围绕真实或明确的用户问题完成个人软件选题，形成可在课程周期内独立完成的项目范围。
+  \item 掌握用户、场景、功能需求、非功能需求、用户故事和验收条件的表达方法。
+  \item 判断AI能力是否真正必要，并明确其输入、输出、价值、风险和非AI降级方案。
+\end{itemize}
+
+\begin{quote}
+\textbf{相关课程参考}
+
+\begin{itemize}
+  \item \href{https://seas.harvard.edu/computer-science/courses}{Harvard CS85：Introduction to Generative AI via Building Software for the Study of Arts \& Sciences（2026课程目录）}：参考其从真实领域问题出发、再把问题转换为软件需求的组织方式。本实验要求先说明用户和实际困难，再决定使用什么AI技术。
+  \item \href{https://cs50.harvard.edu/x/2026/project/}{Harvard CS50：Final Project（2026）}：参考其自主选题、解决真实问题和确定项目里程碑的做法。本课程将其调整为一人一款软件，并在需求阶段明确核心价值、范围和验收条件。
+\end{itemize}
+\end{quote}
+
+\section{实验内容}
+
+\subsection{选题来源与问题陈述}
+
+\begin{itemize}
+  \item 用“目标用户—当前情境—主要困难—造成影响—拟解决方式”描述问题，避免使用空泛技术口号。
+  \item 通过一次简短访谈、现场观察、个人真实经历或公开需求材料说明选题来源，并保留问题记录、观察摘要或资料链接等证据。
+  \item 用一句话概括软件的核心价值，并说明用户在使用前后会发生什么可以观察到的变化。
+\end{itemize}
+
+\subsection{用户画像与典型场景}
+
+\begin{itemize}
+  \item 至少定义1类主要用户，说明其目标、能力、使用环境、约束与痛点；项目存在管理者、内容提供者或其他使用者时，再补充相应的次要用户。
+  \item 用具体场景描述用户如何进入软件、完成任务、获得结果，以及失败时如何处理。
+  \item 为主要用户补充至少4个正常场景和2个异常场景，说明两种情况下软件分别应该如何响应。
+\end{itemize}
+
+\subsection{现有方案与差异化}
+
+\begin{itemize}
+  \item 调研至少2个现有相似的产品、人工流程或开源方案，从功能、成本、隐私、易用性和AI能力等方面比较。
+  \item 指出本项目不准备解决的问题，防止需求边界不断扩大。
+  \item 总结现有方案中可以借鉴的设计和仍未解决的问题，明确本项目准备形成的差异。
+\end{itemize}
+
+\subsection{用户故事、需求与验收条件}
+
+\begin{itemize}
+  \item 采用“作为……我希望……以便……”编写用户故事，并用“给定—当—那么”（Given/When/Then）写验收条件。
+  \item 建立用例图、用例描述：编号、描述、优先级、来源、依赖、验收方法等；非功能需求至少覆盖性能、可靠性、安全或可用性中的两类。
+  \item 围绕最核心的用户流程编写3—5个可直接用于后续实验的验收示例，至少包含正常情况、信息不足或失败情况以及需要人工确认的情况。
+\end{itemize}
+
+\subsection{AI能力必要性与可行性}
+
+\begin{itemize}
+  \item 说明AI处理的任务为何难以完全用固定规则解决，明确模型输入、期望输出、允许错误和人工确认点。
+  \item 分析数据来源、模型服务、费用、时延、隐私、幻觉和评测难点，给出非AI降级方案。
+  \item 从2.4的验收示例中选择至少3组，补充输入、期望输出和判定方法，其中包含1组无法处理或需要人工确认的情况。
+\end{itemize}
+
+\subsection{MVP(Minimum Viable Product)范围与第2—17周计划}
+
+\begin{itemize}
+  \item 形成一页个人项目方案，确定本学期只重点完成的一条核心用户流程，列出纳入MVP的功能和明确不在本学期实现的功能。
+  \item 列出每一阶段的可运行成果、验收条件和风险，确保一人能够在课程周期内完成。
+  \item 把计划落实到每周可检查的任务和阶段演示节点，并为可能延期的功能预留删减或替代方案。
+\end{itemize}
+
+\section{操作记录}
+
+\subsection{选题来源与问题陈述}
+
+本选题来源于本人参加数学建模与数据分析时的真实经历。比赛前期需要反复查看列含义、统计分布并手写交叉特征，容易出现除零、负数取对数、时间编码错误和数据泄露等问题。目标用户是具备 Python/Pandas 基础、但时间紧且特征工程经验有限的数学建模参赛者。主要困难是传统工具只给统计图，或一次生成大量难以解释的特征，影响建模速度和论文表达。
+
+拟开发的 FeaturePilot 是轻量级“特征副驾驶”：用户上传 CSV、选择目标列并填写一句赛题背景后，系统在本地完成统计与风险扫描，由 AI 推荐少量有机理解释的候选特征，再经白名单算子校验后生成安全的 Pandas 代码。其核心价值是：\textbf{在不上传全量原始数据的前提下，把人工筛选和编写特征代码的过程缩短为一次可解释、可确认的交互流程。}
+
+\subsection{用户画像与典型场景}
+
+主要用户为本科数学建模参赛者。其目标是在有限时间内获得可解释、可运行的衍生特征；具备基础 Python 能力，主要在个人电脑上使用；约束包括比赛时间短、数据质量不稳定、网络或模型服务可能不可用。其痛点是特征构造依赖经验、重复编码多且容易引入错误。
+
+\begin{longtable}{p{1.3cm}p{2cm}p{5.1cm}p{5.2cm}}
+\caption{典型使用场景及系统响应}\label{tab:scenes}\\
+\toprule
+类型 & 场景 & 用户操作与目标 & 系统响应 \\
+\midrule
+\endfirsthead
+\toprule
+类型 & 场景 & 用户操作与目标 & 系统响应 \\
+\midrule
+\endhead
+正常 & 有监督回归 & 上传能耗数据，选择能耗列并填写“预测锅炉能耗” & 计算相关性和互信息，推荐少量可解释特征并提供预览 \\
+正常 & 有监督分类 & 选择类别标签与分类任务 & 按分类目标打分，输出结构化推荐 \\
+正常 & 无监督分析 & 不选择目标列，希望压缩冗余并发现结构 & 使用方差、偏度和 PCA 载荷生成低冗余候选 \\
+正常 & 导出代码 & 勾选已通过校验的候选特征 & 生成带除零、负数保护注释的 Pandas 脚本 \\
+异常 & 输入不合法 & 上传缺列、空表或无法解析的 CSV & 停止分析，指出具体问题，不生成误导性结果 \\
+异常 & 高风险特征 & 检测到镜像列或 40\%--70\% 缺失列 & 以红/黄卡片警示并默认锁定，等待用户逐项确认 \\
+\bottomrule
+\end{longtable}
+
+\subsection{现有方案与差异化}
+
+\begin{table}[htbp]
+\centering
+\caption{现有方案比较}\label{tab:compare}
+\small
+\begin{tabularx}{\textwidth}{p{2.5cm}YYYYY}
+\toprule
+方案 & 功能 & 成本 & 隐私 & 易用性 & AI能力 \\
+\midrule
+Featuretools & 自动组合、聚合特征，覆盖面广 & 开源，但大量特征增加计算成本 & 可本地运行 & 需要理解实体与原语配置 & 不理解赛题语义 \\
+ydata-profiling & 自动生成分布、缺失率和相关性报告 & 开源，本地资源消耗可控 & 可本地运行 & 报告直观 & 主要描述数据，不主动给出机理特征 \\
+人工 Pandas 流程 & 灵活、完全可控 & 时间与经验成本高 & 数据留在本地 & 重复编码多、易出错 & 依赖个人经验 \\
+FeaturePilot & 统计筛选、语义推荐、风险确认与安全代码导出 & MVP 采用轻量本地模块，模型调用按次产生少量费用 & 原始数据不上传，只发送元数据画像 & 单页流程，候选少且可解释 & 用于机理解释，失败时可降级为规则引擎 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+可借鉴之处是 Featuretools 的算子思想和 ydata-profiling 的统计概览；仍未解决的问题是“统计异常如何结合赛题背景转化为少量可解释特征”。本项目的差异是“本地统计事实 + AI 语义推理 + 人工确认 + 白名单代码生成”。本学期不实现模型自动调参、自动训练与部署、多人协作、数据库和大规模分布式计算，避免演变为完整 AutoML 平台。
+
+\subsection{用户故事、需求与验收条件}
+
+核心用户故事如下：
+\begin{itemize}
+  \item 作为数学建模参赛者，我希望上传 CSV 并选择目标列，以便系统按有监督或无监督模式分析数据。
+  \item 作为数学建模参赛者，我希望看到少量带理由和风险等级的候选特征，以便快速判断其是否有现实意义。
+  \item 作为数学建模参赛者，我希望一键导出安全的 Pandas 代码，以便直接加入比赛脚本。
+  \item 作为谨慎的使用者，我希望高风险特征默认不可选，以便避免误用泄露列或高缺失列。
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  actor/.style={draw,ellipse,minimum width=2.6cm,minimum height=1cm,align=center},
+  usecase/.style={draw,rounded corners,minimum width=4.1cm,minimum height=0.8cm,align=center},
+  line/.style={-Latex,thin}
+]
+\node[actor] (user) {数学建模参赛者};
+\node[usecase,right=2.8cm of user,yshift=2.1cm] (upload) {上传 CSV 与配置任务};
+\node[usecase,right=2.8cm of user,yshift=0.7cm] (view) {查看推荐与可视化};
+\node[usecase,right=2.8cm of user,yshift=-0.7cm] (confirm) {确认高风险特征};
+\node[usecase,right=2.8cm of user,yshift=-2.1cm] (export) {导出 Pandas 代码};
+\draw[line] (user) -- (upload);
+\draw[line] (user) -- (view);
+\draw[line] (user) -- (confirm);
+\draw[line] (user) -- (export);
+\end{tikzpicture}
+\caption{FeaturePilot 核心用例图}
+\label{fig:usecase}
+\end{figure}
+
+\begin{longtable}{p{1.1cm}p{3.1cm}p{1.4cm}p{2.2cm}p{2.5cm}p{3.2cm}}
+\caption{核心用例描述}\label{tab:cases}\\
+\toprule
+编号 & 描述 & 优先级 & 来源 & 依赖 & 验收方法 \\
+\midrule
+\endfirsthead
+\toprule
+编号 & 描述 & 优先级 & 来源 & 依赖 & 验收方法 \\
+\midrule
+\endhead
+UC01 & 上传 CSV 并生成本地数据画像 & P0 & 个人经历 & Pandas/\allowbreak NumPy & 合法文件可得到列统计；非法文件有明确提示 \\
+UC02 & 按目标与背景推荐候选特征 & P0 & 核心价值 & UC01、模型服务 & 返回规定 JSON 字段，列名和算子均可校验 \\
+UC03 & 展示风险并要求人工确认 & P0 & 泄露风险 & UC01、风险规则 & 红/黄项默认锁定，确认后才可选择 \\
+UC04 & 导出安全 Pandas 代码 & P0 & 编码痛点 & UC02、UC03、算子注册表 & 导出脚本可运行且无 \texttt{exec/eval} \\
+UC05 & 离线规则推荐 & P1 & 弱网约束 & UC01 & 模型不可用时仍能产生规则候选 \\
+\bottomrule
+\end{longtable}
+
+核心验收示例：
+\begin{enumerate}[leftmargin=2.5em]
+  \item \textbf{正常情况：}给定包含数值列、有效目标列的 CSV，当用户提交分析时，那么系统应显示数据画像和不超过 Top-$k$ 的结构化候选特征。
+  \item \textbf{无监督情况：}给定用户选择“无特定目标”，当系统分析时，那么推荐不得依赖标签，并应依据方差、偏度或 PCA 载荷说明理由。
+  \item \textbf{信息不足/失败：}给定空表、目标列不存在或模型服务超时，当用户提交时，那么系统应给出明确提示；服务超时则启用本地规则引擎，不得崩溃。
+  \item \textbf{人工确认：}给定候选特征引用相关系数 $r\geq0.999$ 的镜像列或临界缺失列，当结果展示时，那么该项必须默认锁定；只有用户逐项确认后才能导出。
+  \item \textbf{代码安全：}给定包含零分母和负数的输入，当用户导出并运行代码时，那么安全除法不得抛出除零异常，对数变换应先平移到非负区间，且代码中不得出现 \texttt{exec()} 或 \texttt{eval()}。
+\end{enumerate}
+
+非功能需求：常规赛题数据画像采用最多 20,000 行下采样，目标为个人电脑上秒级返回；模型服务失败时自动降级，保证基本功能可用；原始数据仅在本地处理，发送给模型的内容限于 Schema、统计指标和赛题背景；页面必须明确区分绿、黄、红风险，并给出可理解的错误信息。
+
+\subsection{AI能力必要性与可行性}
+
+固定规则能够发现偏度、缺失率和相关性，却难以理解“压力、容积与做功”这类依赖赛题背景的机理关系，因此 AI 只负责语义推理，不直接执行代码。模型输入为列名、类型、统计摘要、风险名单、目标任务和一句话背景；输出固定为 \texttt{feature\_name、op、params、reason}。允许模型漏掉有用候选或给出被过滤的建议，但不允许未知列名、未注册算子和高风险项绕过人工确认。
+
+\begin{table}[htbp]
+\centering
+\caption{AI 验收输入、期望输出与判定方法}\label{tab:aiaccept}
+\small
+\begin{tabularx}{\textwidth}{p{1.1cm}YYY}
+\toprule
+组别 & 输入 & 期望输出 & 判定方法 \\
+\midrule
+A & 合法 Schema、回归目标、锅炉能耗背景 & 基于真实列名给出受控算子及机理理由 & JSON 可解析；算子命中注册表；参数均存在于列集合 \\
+B & 无目标列、含高偏态数值列 & 明确标识无监督模式，可推荐 \texttt{log1p} 等低冗余变换 & 输出不引用标签；理由对应方差、偏度或 PCA 指标 \\
+C & 含镜像列或 55\% 缺失列 & 拒绝自动放行，提示需要人工确认或跳过 & 界面默认锁定；未经确认无法进入导出脚本 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+可行性方面，Pandas/NumPy 可完成本地统计和安全执行，模型仅接收精简元数据，费用与时延可控。主要风险为模型幻觉、网络失败和统计指标误导；对应措施分别是 JSON Schema 与白名单校验、本地规则降级和人工确认。评测以“结构化输出合法率、代码运行成功率、风险拦截率、推荐理由可理解性”为主，不单独以模型准确率作为结论。
+
+\subsection{MVP 范围与第2—17周计划}
+
+本学期只重点完成一条核心流程：\textbf{上传 CSV 与填写背景 $\rightarrow$ 本地画像与风险扫描 $\rightarrow$ 生成并筛选可解释特征 $\rightarrow$ 预览并导出安全 Pandas 代码}。MVP 包含有/无监督切换、五类安全算子、模型推荐、离线降级、红黄绿风险提示和代码下载；明确不包含自动训练调参、云端数据存储、多人协作和分布式计算。
+
+{\small
+\begin{longtable}{p{2.2cm}p{5.7cm}p{4.3cm}p{2.3cm}}
+\caption{第2—17周个人计划}\label{tab:plan}\\
+\toprule
+周次 & 可检查任务/成果 & 验收条件 & 风险与替代 \\
+\midrule
+\endfirsthead
+\toprule
+周次 & 可检查任务/成果 & 验收条件 & 风险与替代 \\
+\midrule
+\endhead
+第2周 & 明确用户、问题、核心流程与边界 & 完成需求说明 V1 & 范围过大则删除 AutoML 功能 \\
+第3周 & 整理场景、用户故事和验收条件 & 4 正常、2 异常场景可复核 & 证据不足则补个人观察记录 \\
+第4周 & 搭建 Streamlit 页面与 CSV 上传 & 合法文件可读取，异常有提示 & 先支持 UTF-8 CSV \\
+第5周 & 实现描述统计和特殊列识别 & 输出缺失率、偏度、唯一率等 & 大数据先采样 \\
+第6周 & 实现有监督相关性与互信息 & 可选择回归/分类目标 & 先完成回归路径 \\
+第7周 & 实现无监督方差、偏度与 PCA 指标 & 无目标时不引用标签 & PCA 延期则先保留方差/偏度 \\
+第8周 & 实现镜像列和缺失率风险扫描 & 阈值样例全部正确标记 & 阈值改为可配置常量 \\
+第9周 & 建立五类 SafeOperatorRegistry 算子 & 单元测试覆盖异常输入 & 先保留除法、对数、交叉 \\
+第10周 & 完成结构化 Prompt 与 JSON 校验 & 未知列、未知算子均被拦截 & 模型不稳定则加强 Schema \\
+第11周 & 实现本地规则降级 & 断网时可返回候选 & 减少规则数量保证稳定 \\
+第12周 & 完成候选卡片和可视化预览 & 变换前后结果可对比 & KDE 延期则保留直方图 \\
+第13周 & 完成红黄卡锁定与逐项确认 & 未确认项无法勾选 & 状态只保留当前会话 \\
+第14周 & 完成代码拼装、复制与下载 & 导出脚本可独立运行 & 先保证下载功能 \\
+第15周 & 集成测试与典型数据集演示 & 核心流程连续运行成功 & 固化一份演示数据 \\
+第16周 & 性能、可靠性和可用性修正 & 常规数据秒级画像，错误可理解 & 减少采样量与图表数量 \\
+第17周 & 整理文档、演示视频和最终提交 & 报告、仓库、Commit 可核验 & 非核心功能停止追加 \\
+\bottomrule
+\end{longtable}
+}
+
+过程材料保存位置为 \texttt{面向数模的特征衍生系统 (FeaturePilot) 系统设计与需求说明书.md}；实验要求文件为 \texttt{实验2-个人软件选题与需求分析.md}。当前本地目录尚未初始化为 Git 仓库，提交前应补充：仓库链接 \underline{\hspace{5cm}}，对应 Commit \underline{\hspace{4cm}}。
+
+\clearpage
+\section{实验小结}
+
+本实验最终确定的选题为 FeaturePilot，其核心用户流程是上传 CSV 和赛题背景，经本地画像与风险扫描后获得少量可解释的衍生特征，并导出经过白名单校验的 Pandas 代码。MVP 边界聚焦于特征推荐、风险确认和安全代码生成，不扩展为自动训练、调参和部署平台。AI 的必要性在于结合列语义与赛题背景提出机理候选；统计计算、代码执行和风险放行仍由本地程序与用户控制。
+
+分析过程中发生的主要取舍是：最初可能采用大模型直接生成自由 Python 公式，随后改为“大模型只输出受控算子 JSON，本地注册表执行并拼装代码”。该变化减少了灵活性，但能够拦截幻觉列名、语法错误和任意代码执行风险，更符合个人项目在课程周期内可实现、可测试和可解释的要求。同时删去完整 AutoML、多用户协作和分布式计算，把时间集中在一条可运行的核心流程上。
+
+\end{document}
